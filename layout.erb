@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= page.title %> - Random notes by Khaja Minhajuddin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/slate/bootstrap.min.css">
+    <style type="text/css">
+      body{padding-top: 50px;}
+      .page-header{margin-top: 0; padding-bottom: 0;}
+      #main-content{min-height: 500px;}
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/docs" class="navbar-brand">Random notes</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/about">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id='main-content' class="container">
+      <%= content %>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p class="muted">
+          <a href='/'>Random Notes by Khaja Minhajuddin</a> © 2014. All Rights Reserved.
+          <small class="pull-right">
+            <a href='http://www.websrvr.in/'><img src='/images/websrvr-badge.png' /></a>
+          </small>
+        </p>
+      </div>
+    </footer>
+  </html>
+

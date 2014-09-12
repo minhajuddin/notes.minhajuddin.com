@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require 'erb'
+require 'ostruct'
+require 'redcarpet'
+# load layout
+@layout = ERB.new(File.read('layout.erb'))
+# load index.erb
+@index = ERB.new(File.read('index.erb'))
+# load notes
+@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+
+def render_page(page)
+  puts "writing #{page.url}"
+  html = @layout.result(OpenStruct.new(page: page, content: page.content).instance_eval{binding})
+  File.write("./tmp/#{page.url}.html", html)
+end
+
+@notes = Dir.glob("./*md").map do |x|
+  data = File.read(x)
+  title = data.lines.first.chomp.strip.gsub(/^#+/, '')
+  url = title.downcase.gsub(/^[^a-z0-9]+|[^a-z0-9]+$/i,'').gsub(/[^a-z0-9-]+/, '-')
+  note = OpenStruct.new(title: title, url: url, content: @markdown.render(data))
+  # render for each note
+  render_page(note)
+  note
+end
+
+#render index
+index_html = @index.result(OpenStruct.new(notes: @notes).instance_eval{binding})
+render_page(OpenStruct.new(title: 'Index', content: index_html, url: 'index'))
