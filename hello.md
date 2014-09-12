@@ -1,5 +1,3 @@
-#Hello World this is awesome?
+#Hello World
 
-This is an awesome note
-
-    some code here
+This is a place for my public notes
