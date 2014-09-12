@@ -4,8 +4,8 @@ require 'ostruct'
 require 'redcarpet'
 require 'fileutils'
 # CONFIG VARS
-DESTINATION_DIR = "./tmp"
-#DESTINATION_DIR = "/home/minhajuddin/Dropbox/Apps/websrvr/minhajuddin"
+#DESTINATION_DIR = "./tmp"
+DESTINATION_DIR = "/home/minhajuddin/Dropbox/Apps/websrvr/minhajuddin"
 # load layout
 @layout = ERB.new(File.read('layout.erb'))
 # load index.erb
