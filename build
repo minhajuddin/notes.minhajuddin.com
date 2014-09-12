@@ -2,6 +2,10 @@
 require 'erb'
 require 'ostruct'
 require 'redcarpet'
+require 'fileutils'
+# CONFIG VARS
+DESTINATION_DIR = "./tmp"
+#DESTINATION_DIR = "/home/minhajuddin/Dropbox/Apps/websrvr/minhajuddin"
 # load layout
 @layout = ERB.new(File.read('layout.erb'))
 # load index.erb
@@ -12,7 +16,8 @@ require 'redcarpet'
 def render_page(page)
   puts "writing #{page.url}"
   html = @layout.result(OpenStruct.new(page: page, content: page.content).instance_eval{binding})
-  File.write("./tmp/#{page.url}.html", html)
+  FileUtils.mkdir_p("#{DESTINATION_DIR}/#{page.url}")
+  File.write("#{DESTINATION_DIR}/#{page.url}/index.html", html)
 end
 
 @notes = Dir.glob("./*md").map do |x|
@@ -27,4 +32,4 @@ end
 
 #render index
 index_html = @index.result(OpenStruct.new(notes: @notes).instance_eval{binding})
-render_page(OpenStruct.new(title: 'Index', content: index_html, url: 'index'))
+render_page(OpenStruct.new(title: 'Index', content: index_html, url: '/'))
